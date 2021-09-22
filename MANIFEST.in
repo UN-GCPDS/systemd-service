@@ -1,0 +1,5 @@
+recursive-include systemd_service/ *
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+recursive-exclude examples/ *
+recursive-exclude docs/ *
