@@ -20,11 +20,12 @@ setup(
     maintainer='Yeison Cardona',
     maintainer_email='yeisoneng@gmail.com',
     # url='http://yeisoncardona.com/',
-    download_url='https://bitbucket.org/gcpds/pythonn-systemd_service/downloads/',
+    download_url='https://github.com/UN-GCPDS/systemd-service',
     install_requires=[],
     include_package_data=True,
     license='BSD License',
     description="Simple API to automate the creation of custom daemons for GNU/Linux.",
     #    long_description = README,
+    python_requires='>=3.7',
     classifiers=[],
 )
