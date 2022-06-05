@@ -9,7 +9,13 @@ class Service:
     def __init__(self, name, path=None):
         """Constructor"""
         self.name = name
-        self.path = path
+
+        if path is None:
+            self.path = (
+                name.lower().strip().replace('-', '_').replace(' ', '_')
+            )
+        else:
+            self.path = path
 
     # ----------------------------------------------------------------------
     def stop(self, unit='service'):
@@ -30,6 +36,11 @@ class Service:
     def enable(self, unit='service'):
         """"""
         os.system(f"systemctl enable {self.name}.{unit}")
+
+    # ----------------------------------------------------------------------
+    def disable(self, unit='service'):
+        """"""
+        os.system(f"systemctl disable {self.name}.{unit}")
 
     # ----------------------------------------------------------------------
     def reload(self):
@@ -55,8 +66,8 @@ class Service:
         systemd_script = f'''[Unit]
 Description="{self.name}"
 {after}
-StartLimitIntervalSec=500
-StartLimitBurst=5
+StartLimitIntervalSec=5000
+StartLimitBurst=50
 
 [Service]
 Type=simple
