@@ -85,7 +85,7 @@ WantedBy=multi-user.target'''
         self.reload()
 
     # ----------------------------------------------------------------------
-    def create_timer(self, on_boot_sec=False, on_calendar=False, *args, **kwargs):
+    def create_timer(self, on_boot_sec=None, on_calendar=None, *args, **kwargs):
         """"""
         # Determine if the service should use OnBootSec or OnCalendar
         if on_boot_sec:
