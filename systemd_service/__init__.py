@@ -85,13 +85,21 @@ WantedBy=multi-user.target'''
         self.reload()
 
     # ----------------------------------------------------------------------
-    def create_timer(self, on_boot_sec=15, *args, **kwargs):
+    def create_timer(self, on_boot_sec=False, on_calendar=False, *args, **kwargs):
         """"""
+        # Determine if the service should use OnBootSec or OnCalendar
+        if on_boot_sec:
+            timer_type = f'OnBootSec = {on_boot_sec}s'
+        elif on_calendar:
+            timer_type = f'OnCalendar = {on_calendar}'
+        else:
+            timer_type = f'OnBootSec = 15s'
+
         systemd_script = f'''[Unit]
 Description = "{self.name}"
 
 [Timer]
-OnBootSec = {on_boot_sec}s
+{timer_type}
 Unit = {self.name}.service
 
 [Install]
